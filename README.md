@@ -15,7 +15,7 @@ I then used ffmpeg to convert the resulting jfif files to jpg.
 The internal images are stored in an SPI NOR chip with a model [P25D32H](https://www.lcsc.com/product-detail/C5263842.html). When you open the camera, you're looking for a small black microchip with 8 spider legs coming out of it. The contents of this chip can be read by connecting it to a [CH341A USB reader](https://www.amazon.com/dp/B07RV35D4B) and using [NeoProgrammer](https://github.com/GioLangLe/CH341B-NeoProgramer) to dump the firmware. The chip is a 25xx chip, so use the config for P25QD32H. Dump the firmware from the chip and save it as `camera.bin`.
 
 ## Extract Images From Dump File
-Download extract.py from this repo and put it in the same folder as the `camera.bin` you dumped from the camera's chip, then execute the Python script. This will dump all of the images from the bin file into the same folder. You should end up with a bunch of img[#].jfif files which can then be converted to jpeg using FFmpeg. The first 60 or so images are actually part of the firmware and are the different backgrounds and overlays used by the camera OS, such as the startup image here:
+Download [extract.py](https://github.com/thephenakist/kid-cam-extractor/blob/main/extract.py?raw=true) from this repo and put it in the same folder as the `camera.bin` you dumped from the camera's chip, then execute the Python script. This will dump all of the images from the bin file into the same folder. You should end up with a bunch of img[#].jfif files which can then be converted to jpeg using FFmpeg. The first 60 or so images are actually part of the firmware and are the different backgrounds and overlays used by the camera OS, such as the startup image here:
 
 ![Welcome screen image used by the camera](https://github.com/thephenakist/kid-cam-extractor/blob/main/Overlays/out50.jpg?raw=true)
 
@@ -23,5 +23,5 @@ Download extract.py from this repo and put it in the same folder as the `camera.
 If you're not familiar with [FFmpeg](https://www.ffmpeg.org/download.html), here's an example of how to use the command:
 
 ```
-ffmpeg -i out1.jfif out1.jpg
+ffmpeg -i img1.jfif out1.jpg
 ```
